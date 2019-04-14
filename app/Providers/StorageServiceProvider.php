@@ -14,5 +14,10 @@ class StorageServiceProvider extends ServiceProvider {
 			'App\Libs\Platform\Storage\School\SchoolRepository',
 			'App\Libs\Platform\Storage\School\EloquentSchoolRepository'
 		);
+
+		$this->app->bind(	// binding the Course model repositories
+			'App\Libs\Platform\Storage\Course\CourseRepository',
+			'App\Libs\Platform\Storage\Course\EloquentCourseRepository'
+		);
 	}
 }

@@ -5,7 +5,7 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="public/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="{{ url('public/assets/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p>Alexander Pierce</p>
@@ -26,8 +26,8 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-				<li><a href="{!! URL::to('school') !!}"><i class="fa fa-book"></i> <span>School</span></a></li>
-				<li><a href="{!! URL::to('course') !!}"><i class="fa fa-book"></i> <span>Courses</span></a></li>
+				<li class="{!! ($page->getActiveSection(1) === 'course')? ' active' : '' !!}"><a href="{!! URL::to('course') !!}"><i class="fa fa-book"></i> <span>Courses</span></a></li>
+        <li class="{!! ($page->getActiveSection(1) === 'school')? ' active' : '' !!}"><a href="{!! URL::to('school') !!}"><i class="fa fa-book"></i> <span>School</span></a></li>
 			</ul>
     </section>
     <!-- /.sidebar -->

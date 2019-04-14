@@ -1,134 +1,77 @@
-@extends('admin.layout.twoColumn')
-
-@section('pageHeadSpecificPluginCSS') {{-- Page Head Specific Plugin CSS Files --}}
-@stop
-
-@section('pageHeadSpecificCSS')	{{-- Page Head Specific CSS Files --}}
-@stop
-
-@section('bodyContent')	{{-- Page Body Content --}}
+@include('admin/elements/header')
 <?php
-	$loan = $page->getBody()->getDataByKey('loan');
+	$school = $page->getBody()->getDataByKey('school');
 ?>
-	<div class="portlet light bg-inverse">
-		<div class="portlet-body form">
-			<!-- START :: Form -->
-			 <form action="#" class="form-horizontal">
-				<div class="form-body">
-					<h2 class="margin-bottom-20">{{ $loan->type }}</h2>
-					<!-- START :: row -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Name:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">{{ $loan->name }}</p>
-								</div>
-							</div>
+<div class="content-wrapper">
+	<!-- Content Header (Page header) -->
+	<section class="content-header">
+	  <h1>{{ $school->name }}</h1>
+	  <ol class="breadcrumb">
+		<li><a href="/school"><i class="fa fa-dashboard"></i> School</a></li>
+	  </ol>
+	</section>
+	<!-- Main content -->
+	<section class="content">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- Horizontal Form -->
+				<div class="box box-info">
+					<div class="box-header with-border">
+					  <h3 class="box-title">School Details</h3>
+					</div><!-- /.box-header -->
+					@include('admin/elements/notices')
+					<!-- form start -->
+					  <div class="box-body">
+						<div class="form-group">
+						  <label for="inputEmail3" class="col-sm-2 control-label">School Name</label>
+						  <div class="col-sm-10">
+							<p> {{ $school['name'] }} </p>
+					  	  </div>
 						</div>
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Type:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">{{ $loan->type }}</p>
-								</div>
-							</div>
+						<div class="form-group">
+						  <label for="inputEmail3" class="col-sm-2 control-label">School Contact</label>
+						  <div class="col-sm-10">
+							<p> {{ $school['mobile'] }} </p>
+					  	  </div>
 						</div>
-                        {{-- <!-- <div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Amount:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">INR {{ $loan->amount }}</p>
-								</div>
-							</div>
-						</div> --> --}}
-					</div>
-					<!-- END :: row -->
-					<!-- START :: row -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Loan Term:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">{{ $loan->loan_term }}</p>
-								</div>
-							</div>
+						<div class="form-group">
+						  <label for="inputEmail3" class="col-sm-2 control-label">School Address</label>
+						  <div class="col-sm-10">
+							<p> {{ $school['address'] }}</p>
+					  	  </div>
 						</div>
-                                                
-                        <div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Interest Rate (%):</label>
-								<div class="col-md-9">
-									<p class="form-control-static">{{ $loan->interest_rate }}</p>
+						<div class="form-group">
+						  <label for="inputEmail3" class="col-sm-2 control-label">Courses</label>
+						  <div class="col-sm-10">
+								@if($school->courses)
+								@foreach ($school->courses as $course)
+								<p> {{ $course->course_name }}</p>
+								@endforeach
+								@endif
 								</div>
-							</div>
 						</div>
-					</div>
-					<!-- END :: row -->
-					<!-- START :: row -->
-					{{-- <div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Down Payment:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">INR {{ $loan->down_payment }}</p>
-								</div>
+						
+						<div class="form-group">
+						  <label for="inputEmail3" class="col-sm-2 control-label">Is Active</label>
+						  <?php $is_active = array_key_exists('is_active', Input::old())? Input::old('is_active') : $school->is_active; ?>
+						  <div class="col-sm-10">
+						  {{ ($is_active == 1)?  'Yes' : 'No' }}
 							</div>
+					  	  </div>
 						</div>
-                                                
-                                                <div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Annual Payment:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">INR {{ $loan->annual_payment }}</p>
-								</div>
-							</div>
-						</div>
-					</div> --}}
-					<!-- END :: row -->
-					<!-- START :: row -->
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<label class="control-label col-md-3">Status:</label>
-								<div class="col-md-9">
-									<p class="form-control-static">{{ $loan->is_active? 'Active' : 'In-active' }}</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- END :: row -->
-				</div>
-				<div class="form-actions">
-					<div class="row">
-						<div class="col-md-6">
-							<div class="row">
-								<div class="col-md-offset-3 col-md-9">
-									<a href="{!! URL::to('loan') !!}" class="btn blue-madison btn-outline"><i class="fa fa-list"></i> Listing</a>
-									<a href="{!! URL::to('loan/' . $loan->id . '/edit') !!}" class="btn yellow btn-outline"><i class="fa fa-pencil"></i> Edit</a>
-									<a title="Delete" id="{{ $loan->id }}" class="confirmDelete btn btn-outline red" ><i class="fa fa-trash-o"></i> Delete</a>
-									<a href="{!! URL::previous() !!}" class="btn dark btn-outline"><i class="fa fa-undo"></i> Cancel</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6"> </div>
-					</div>
-				</div>
-			</form>
-			<!-- END :: Form -->
-			{!! Form::open(['method'=>'DELETE', 'id'=>'DeleteForm', 'url'=>'loan', 'style'=>'display:inline']) !!}
-			{!! Form::close() !!}
-		</div>
-	</div>
-@stop
-
-@section('pageFooterSpecificPlugin')	{{-- Page Footer Specific Plugin Files --}}
-	{!! HTML::script('assets/metronic/global/plugins/bootbox/bootbox.min.js') !!}
-@stop
-
-@section('pageFooterSpecificJS')	{{-- Page Footer Specific JS Files --}}
-	{!! HTML::script('assets/admin/scripts/general-ui-alert-dialog.js') !!}
-@stop
-
-@section('pageFooterScriptInitialize')	{{-- Page Footer Script Initialization Code --}}
-@stop
+						
+					  </div><!-- /.box-body -->
+					  <div class="box-footer">
+						<a href="{{ URL::to('school') }}">
+							<input type="button" class="btn btn-default" value="Listing">
+						</a>
+						<a href="{{ URL::to('school',$school->id).'/edit' }}">
+							<input type="button" class="btn btn-danger" value="Edit">
+						</a>
+					  </div><!-- /.box-footer -->
+				</div><!-- /.box -->
+			</div><!--/.col (right) -->
+		</div>   <!-- /.row -->
+	</section><!-- /.content -->
+</div>
+@include('admin/elements/footer')

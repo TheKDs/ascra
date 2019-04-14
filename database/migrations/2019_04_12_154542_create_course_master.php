@@ -14,7 +14,6 @@ class CreateCourseMaster extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('school_id');
             $table->string('course_code',20)->index();
             $table->string('course_name',100)->index();
             $table->text('description');

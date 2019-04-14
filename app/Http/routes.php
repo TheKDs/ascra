@@ -14,11 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
-/* Datatable Routes */
-Route::group(['prefix' => 'datatables'], function() {
-    post('school', 'Admin\SchoolController@datatables');
-    
-});
-/* Datatable Routes */
+
 Route::resource('school', 'Admin\SchoolController');
 Route::resource('course', 'Admin\CourseController');
+
+/* Internal APIs - Select2 and Other Routes */
+Route::group(['prefix' => 'api/v1'], function() {
+    post('course', 'Admin\CourseController@index');
+});
+/* Internal APIs - Select2 and Other Routes */

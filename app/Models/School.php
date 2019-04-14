@@ -10,4 +10,8 @@ class School extends Model {
 	protected $hidden = ['created_at', 'updated_at', 'deleted_at'];	//	array of fields that are to be ignored i.e. not pulled from the database
 	protected $table = 'schools';
 
+	public function courses(){
+        return $this->belongsToMany('App\Models\Course','school_courses','school_id','course_id');
+    }
+
 }

@@ -7,27 +7,27 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
-    <link rel="stylesheet" href="public/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url('public/bootstrap/css/bootstrap.min.css') }}">
 	<!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- DataTables -->
-    <link media="all" type="text/css" rel="stylesheet" href="public/plugins/datatables/datatables.min.css">
-	  <link media="all" type="text/css" rel="stylesheet" href="public/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css">
+    <link media="all" type="text/css" rel="stylesheet" href="{{ url('public/plugins/datatables/datatables.min.css') }}">
+	  <link media="all" type="text/css" rel="stylesheet" href="{{ url('public/plugins/datatables/plugins/bootstrap/datatables.bootstrap.css') }}">
 	<!-- Theme style -->
-    <link rel="stylesheet" href="public/assets/css/AdminLTE.min.css">
+    <link rel="stylesheet" href="{{ url('public/assets/css/AdminLTE.min.css') }}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="public/assets/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="{{ url('public/assets/css/skins/_all-skins.min.css') }}">
     <!-- iCheck -->
-    <link rel="stylesheet" href="public/plugins/iCheck/flat/blue.css">
+    <link rel="stylesheet" href="{{ url('public/plugins/iCheck/flat/blue.css') }}">
 	<!-- Morris chart -->
-    <link rel="stylesheet" href="public/plugins/morris/morris.css">
+    <link rel="stylesheet" href="{{ url('public/plugins/morris/morris.css') }}">
     <!-- Date Picker -->
-    <link rel="stylesheet" href="public/plugins/datepicker/datepicker3.css">
+    <link rel="stylesheet" href="{{ url('public/plugins/datepicker/datepicker3.css') }}">
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="public/plugins/daterangepicker/daterangepicker-bs3.css">
+    <link rel="stylesheet" href="{{ url('public/plugins/daterangepicker/daterangepicker-bs3.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -36,16 +36,18 @@
     <![endif]-->
 	
 	<!-- jQuery 2.1.4 -->
-	<script src="public/plugins/jQuery/jquery.min.js"></script>
+	<script src="{{ url('public/plugins/jQuery/jquery.min.js') }}"></script>
 	<!-- jQuery UI 1.11.4 -->
 										
-	<script src="public/plugins/jQueryUI/jquery-ui.min.js"></script>
+	<script src="{{ url('public/plugins/jQueryUI/jquery-ui.min.js') }}"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	
 	<!-- Bootstrap Formvalidation -->
-	<script src="public/plugins/formvalidation/formValidation.min.js"></script>
-	<script src="public/plugins/formvalidation/bootstrap.min.js"></script>
-
+	<script src="{{ url('public/plugins/formvalidation/formValidation.min.js') }}"></script>
+	<script src="{{ url('public/plugins/formvalidation/bootstrap.min.js') }}"></script>
+  <script type="text/javascript">
+    var APP_URL = {!! json_encode(url('/')) !!}
+  </script>
   </head>
   <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -80,7 +82,7 @@
                       <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
-                            <img src="public/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('public/assets/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Support Team
@@ -92,7 +94,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="public/assets/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('public/assets/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             AdminLTE Design Team
@@ -104,7 +106,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="public/assets/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('public/assets/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Developers
@@ -116,7 +118,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="public/assets/img/user3-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('public/assets/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Sales Department
@@ -128,7 +130,7 @@
                       <li>
                         <a href="#">
                           <div class="pull-left">
-                            <img src="public/assets/img/user4-128x128.jpg" class="img-circle" alt="User Image">
+                            <img src="{{ url('public/assets/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
                           </div>
                           <h4>
                             Reviewers
@@ -256,13 +258,13 @@
               <!-- User Account: style can be found in dropdown.less -->
 				<li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="public/assets/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                  <img src="{{ url('public/assets/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
                   <span class="hidden-xs">Username</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
-				    <img src="public/assets/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+				    <img src="{{ url('public/assets/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
                     <p>
 						Username                    </p>
                   </li>
